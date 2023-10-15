@@ -69,10 +69,11 @@ mod tests {
         m: i32,
         nums2: Vec<i32>,
         n: i32,
+        expected: Vec<i32>,
     }
 
     #[test]
-    fn test_add() {
+    fn test_merge_arrays() {
         let mut test_cases = vec![
             Test {
                 title: "merges two arrays",
@@ -80,6 +81,7 @@ mod tests {
                 m: 3,
                 nums2: vec![2, 5, 6],
                 n: 3,
+                expected: vec![1, 2, 2, 3, 5, 6],
             },
             Test {
                 title: "merges two arrays when first array is empty",
@@ -87,6 +89,7 @@ mod tests {
                 m: 0,
                 nums2: vec![1],
                 n: 1,
+                expected: vec![1],
             },
             Test {
                 title: "merges two arrays when second array is empty",
@@ -94,18 +97,14 @@ mod tests {
                 m: 1,
                 nums2: vec![],
                 n: 0,
+                expected: vec![1],
             },
         ];
 
         test_cases.iter_mut().for_each(|test| {
             merge_arrays(&mut test.nums1, test.m, &mut test.nums2, test.n);
 
-            assert_eq!(
-                test.nums1,
-                vec![1, 2, 2, 3, 5, 6],
-                "compress - {}",
-                test.title
-            );
+            assert_eq!(test.nums1, test.expected, "merge_arrays - {}", test.title);
         });
     }
 }
