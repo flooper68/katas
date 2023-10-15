@@ -8,7 +8,7 @@ pub struct Node {
 /**
  * This implementation is different from other languages because we can not create the value here and return
  * it as a reference because the value will be dropped at the end of the function. The create method and the add_node
- * must be separate and be called in higher scope. Also this would probably be nicer as a struct method.
+ * must be separate and be called in higher scope. Also this would probably be nicer as a struct
  */
 pub fn add_node(root: &mut Box<Node>, value: i32) {
     if value < root.val {
