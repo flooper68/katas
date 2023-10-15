@@ -2,7 +2,6 @@ package solution
 
 
 func mergeArrays(nums1 []int, m int, nums2 []int, n int)  {
-
   var combined = m + n
   var mi = m - 1
   var ni = n - 1
