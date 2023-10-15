@@ -63,39 +63,49 @@ pub fn merge_arrays(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) 
 mod tests {
     use crate::merge_arrays::*;
 
+    struct Test {
+        title: &'static str,
+        nums1: Vec<i32>,
+        m: i32,
+        nums2: Vec<i32>,
+        n: i32,
+    }
+
     #[test]
     fn test_add() {
-        let mut nums1 = vec![1, 2, 3, 0, 0, 0];
-        let m = 3;
-        let mut nums2 = vec![2, 5, 6];
-        let n = 3;
+        let mut test_cases = vec![
+            Test {
+                title: "merges two arrays",
+                nums1: vec![1, 2, 3, 0, 0, 0],
+                m: 3,
+                nums2: vec![2, 5, 6],
+                n: 3,
+            },
+            Test {
+                title: "merges two arrays when first array is empty",
+                nums1: vec![0],
+                m: 0,
+                nums2: vec![1],
+                n: 1,
+            },
+            Test {
+                title: "merges two arrays when second array is empty",
+                nums1: vec![1],
+                m: 1,
+                nums2: vec![],
+                n: 0,
+            },
+        ];
 
-        merge_arrays(&mut nums1, m, &mut nums2, n);
+        test_cases.iter_mut().for_each(|test| {
+            merge_arrays(&mut test.nums1, test.m, &mut test.nums2, test.n);
 
-        assert_eq!(nums1, vec![1, 2, 2, 3, 5, 6]);
-    }
-
-    #[test]
-    fn test_add_empty_first() {
-        let mut nums1 = vec![0];
-        let m = 0;
-        let mut nums2 = vec![1];
-        let n = 1;
-
-        merge_arrays(&mut nums1, m, &mut nums2, n);
-
-        assert_eq!(nums1, vec![1]);
-    }
-
-    #[test]
-    fn test_add_empty_second() {
-        let mut nums1 = vec![1];
-        let m = 1;
-        let mut nums2 = vec![];
-        let n = 0;
-
-        merge_arrays(&mut nums1, m, &mut nums2, n);
-
-        assert_eq!(nums1, vec![1]);
+            assert_eq!(
+                test.nums1,
+                vec![1, 2, 2, 3, 5, 6],
+                "compress - {}",
+                test.title
+            );
+        });
     }
 }
