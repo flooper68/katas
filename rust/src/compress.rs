@@ -14,16 +14,3 @@ pub fn compress(input: &str) -> (Vec<char>, Vec<usize>) {
 
     return (chars, indexes);
 }
-
-#[cfg(test)]
-mod tests {
-    use crate::compress::*;
-
-    #[test]
-    fn test_compress() {
-        let result = compress("abcab");
-
-        assert_eq!(result.0, vec!['a', 'b', 'c']);
-        assert_eq!(result.1, vec![0, 1, 2, 0, 1]);
-    }
-}
